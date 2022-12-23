@@ -1,7 +1,9 @@
 pipeline{
     
     agent any 
-    
+    environment {
+        VERSION = "${env.BUILD_ID}"
+    }
     stages {
         
         stage('Git Checkout'){
@@ -60,7 +62,9 @@ pipeline{
         stage('Docker Build & Push to Nexus') {
             steps{
                 script{
-                  
+                    docker build . -t 172.17.0.4:8083/springapp:${VERSION}
+                    docker login -u admin -p admin 172.17.0.4:8083
+                    docker push 172.17.0.4:8083/springapp:${VERSION}
                 }
             }
         }
