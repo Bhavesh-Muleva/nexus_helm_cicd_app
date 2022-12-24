@@ -62,9 +62,11 @@ pipeline{
         stage('Docker Build & Push to Nexus') {
             steps{
                 script{
+                    sh '''
                     docker build . -t bhaveshmuleva/springapp:${VERSION}
                     docker login -u bhaveshmuleva -p Muleva@503
                     docker push bhaveshmuleva/springapp:${VERSION}
+                    '''
                 }
             }
         }
