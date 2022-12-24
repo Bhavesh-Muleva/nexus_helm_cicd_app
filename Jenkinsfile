@@ -16,70 +16,70 @@ pipeline{
                 }
             }
         }
-        stage('UNIT testing'){
+//         stage('UNIT testing'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Integration testing'){
+//                     sh 'mvn test'
+//                 }
+//             }
+//         }
+//         stage('Integration testing'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
-        stage('Maven build'){
+//                     sh 'mvn verify -DskipUnitTests'
+//                 }
+//             }
+//         }
+//         stage('Maven build'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn clean install'
-                }
-            }
-        }
-        stage('Static code analysis'){
+//                     sh 'mvn clean install'
+//                 }
+//             }
+//         }
+//         stage('Static code analysis'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    withSonarQubeEnv(credentialsId: 'Sonar-Token') {
+//                     withSonarQubeEnv(credentialsId: 'Sonar-Token') {
                         
-                        sh 'mvn clean package sonar:sonar'
-                    }
-                }       
-            }
-         }
-        stage('Quality Gate Status'){
+//                         sh 'mvn clean package sonar:sonar'
+//                     }
+//                 }       
+//             }
+//          }
+//         stage('Quality Gate Status'){
                 
-                steps{
+//                 steps{
                     
-                    script{
+//                     script{
                         
-                        waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-Token'
-                    }
-                }
-         }
-        stage('Docker Build & Push to Nexus') {
-            steps{
-                script{
-                    sh '''
-                    docker build . -t bhaveshmuleva/springapp:${VERSION}
-                    docker login -u bhaveshmuleva -p Muleva@503
-                    docker push bhaveshmuleva/springapp:${VERSION}
-                    '''
-                }
-            }
-        }
+//                         waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-Token'
+//                     }
+//                 }
+//          }
+//         stage('Docker Build & Push to Nexus') {
+//             steps{
+//                 script{
+//                     sh '''
+//                     docker build . -t bhaveshmuleva/springapp:${VERSION}
+//                     docker login -u bhaveshmuleva -p Muleva@503
+//                     docker push bhaveshmuleva/springapp:${VERSION}
+//                     '''
+//                 }
+//             }
+//         }
 	    stage('Identifying misconfigs using datree in helm charts'){
 		    steps{
 			    script{
