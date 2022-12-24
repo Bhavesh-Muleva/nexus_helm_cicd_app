@@ -93,6 +93,17 @@ pipeline{
 			    }
 		    }
 	    }
+// 	    stage('Uploading Helm Charts to nexus hosted repo'){      //requried working nexus repository
+// 		    withCredential([string(credentialId: 'nexus_passwd', variable:'nexus_creds')]){  //configure credential in jenkins with help of pipeline syntax
+// 			dir('kubernetes/myapp/') {
+// 		            sh '''
+// 			    helmversion=$(helm show chart myapp | grep version | cut -d: -f 2 | tr -d ' ')
+// 			    tar -czvf myapp-${helmversion}.tgz myapp/
+// 			    curl -u admin:$nexus_creds http://nexus_machine_ip:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v
+// 			    '''
+// 			}
+// 		    }
+// 	    }
      }
 //      post {
 //           always {
