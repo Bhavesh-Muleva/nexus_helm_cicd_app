@@ -12,7 +12,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', url: 'https://github.com/Bhavesh-Muleva/demo-counter-app.git'
+                    git branch: 'main', url: 'https://github.com/Bhavesh-Muleva/nexus_helm_cicd_app.git'
                 }
             }
         }
