@@ -87,7 +87,7 @@ pipeline{
 	    stage('Uploading Helm Charts to nexus hosted repo'){      //requried working nexus repository
 		    steps {
 			    script{
-				 dir('kubernetes/myapp/') {
+				 dir('kubernetes/') {
 				    sh '''
 				    helmversion=$(helm show chart myapp | grep version | cut -d: -f 2 | tr -d ' ')
 				    tar -czvf myapp-${helmversion}.tgz myapp/
