@@ -59,28 +59,28 @@ pipeline{
                 }       
             }
          }
-        stage('Quality Gate Status'){
+//         stage('Quality Gate Status'){
                 
-                steps{
+//                 steps{
                     
-                    script{
-			 timeout(time: 5, unit: 'MINUTES') {
-				waitForQualityGate abortPipeline: true
-			 }
-                    }
-                }
-         }
-//         stage('Docker Build & Push to Nexus') {
-//             steps{
-//                 script{
-//                     sh '''
-//                     docker build . -t bhaveshmuleva/springapp:${VERSION}
-//                     docker login -u bhaveshmuleva -p Muleva@503
-//                     docker push bhaveshmuleva/springapp:${VERSION}
-//                     '''
+//                     script{
+// 			 timeout(time: 5, unit: 'MINUTES') {
+// 				waitForQualityGate abortPipeline: true
+// 			 }
+//                     }
 //                 }
-//             }
-//         }
+//          }
+        stage('Docker Build & Push to Nexus') {
+            steps{
+                script{
+                    sh '''
+                    docker build . -t 127.0.0.1:8083/springapp:${VERSION}
+                    docker login -u admin -p nexus 127.0.0.1:8083
+                    docker push 127.0.0.1:8083/springapp:${VERSION}
+                    '''
+                }
+            }
+        }
 // 	    stage('Identifying misconfigs using datree in helm charts'){
 // 		    steps{
 // 			    script{
