@@ -36,29 +36,29 @@ pipeline{
 //                 }
 //             }
 //         }
-        stage('Maven build'){
+//         stage('Maven build'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn clean install'
-                }
-            }
-        }
-        stage('Static code analysis'){
+//                     sh 'mvn clean install'
+//                 }
+//             }
+//         }
+//         stage('Static code analysis'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
+//                     withSonarQubeEnv(credentialsId: 'sonar-token') {
                         
-                        sh 'mvn clean package sonar:sonar'
-                    }
-                }       
-            }
-         }
+//                         sh 'mvn clean package sonar:sonar'
+//                     }
+//                 }       
+//             }
+//          }
         stage('Quality Gate Status'){
                 
                 steps{
