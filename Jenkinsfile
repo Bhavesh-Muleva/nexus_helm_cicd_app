@@ -49,15 +49,15 @@ pipeline{
             }
          }
 	    
-        stage('Quality Gate Status'){    
-                steps{
-                    script{
-			 timeout(time: 5, unit: 'MINUTES') {
-				waitForQualityGate abortPipeline: true
-			 }
-                    }
-                }
-         }
+//         stage('Quality Gate Status'){                                      //make sure to host ideal server for sonarqube or have installed and configured 
+//                 steps{                                                     // java 8 in your compute machine 
+//                     script{
+// 			 timeout(time: 5, unit: 'MINUTES') {
+// 				waitForQualityGate abortPipeline: true
+// 			 }
+//                     }
+//                 }
+//          }
 	    
         stage('Docker Build & Push to Nexus') {
             steps{
