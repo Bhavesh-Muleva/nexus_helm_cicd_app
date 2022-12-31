@@ -6,16 +6,16 @@ pipeline{
     }
     stages {
         
-//         stage('Git Checkout'){
+        stage('Git Checkout'){
             
-//             steps{
+            steps{
                 
-//                 script{
+                script{
                     
-//                     git branch: 'main', url: 'https://github.com/Bhavesh-Muleva/nexus_helm_cicd_app.git'
-//                 }
-//             }
-//         }
+                    git branch: 'main', url: 'https://github.com/Bhavesh-Muleva/nexus_helm_cicd_app.git'
+                }
+            }
+        }
 //         stage('UNIT testing'){
             
 //             steps{
