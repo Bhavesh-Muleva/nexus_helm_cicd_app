@@ -16,36 +16,36 @@ pipeline{
                 }
             }
         }
-//         stage('UNIT testing'){
+        stage('UNIT testing'){
             
-//             steps{
+            steps{
                 
-//                 script{
+                script{
                     
-//                     sh 'mvn test'
-//                 }
-//             }
-//         }
-//         stage('Integration testing'){
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('Integration testing'){
             
-//             steps{
+            steps{
                 
-//                 script{
+                script{
                     
-//                     sh 'mvn verify -DskipUnitTests'
-//                 }
-//             }
-//         }
-//         stage('Maven build'){
+                    sh 'mvn verify -DskipUnitTests'
+                }
+            }
+        }
+        stage('Maven build'){
             
-//             steps{
+            steps{
                 
-//                 script{
+                script{
                     
-//                     sh 'mvn clean install'
-//                 }
-//             }
-//         }
+                    sh 'mvn clean install'
+                }
+            }
+        }
 //         stage('Static code analysis'){
             
 //             steps{
@@ -80,19 +80,19 @@ pipeline{
 //                 }
 //             }
 //         }
-	    stage('Identifying misconfigs using datree in helm charts'){
-		    steps{
-			    script{
-				    dir('kubernetes/myapp/') {
-					    withEnv(['DATREE_TOKEN=85728c01-9082-4668-9e88-fb941a8b5103']) {
-                                                    // some block
-						    sh 'helm datree test .'
-                                            }
+// 	    stage('Identifying misconfigs using datree in helm charts'){
+// 		    steps{
+// 			    script{
+// 				    dir('kubernetes/myapp/') {
+// 					    withEnv(['DATREE_TOKEN=85728c01-9082-4668-9e88-fb941a8b5103']) {
+//                                                     // some block
+// 						    sh 'helm datree test .'
+//                                             }
 				      
-				    }
-			    }
-		    }
-	    }
+// 				    }
+// 			    }
+// 		    }
+// 	    }
 // 	    stage('Uploading Helm Charts to nexus hosted repo'){      //requried working nexus repository
 // 		    withCredential([string(credentialId: 'nexus_passwd', variable:'nexus_creds')]){  //configure credential in jenkins with help of pipeline syntax
 // 			dir('kubernetes/myapp/') {
