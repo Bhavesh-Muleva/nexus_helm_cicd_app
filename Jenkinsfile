@@ -16,26 +16,26 @@ pipeline{
                 }
             }
         }
-        stage('UNIT testing'){
+//         stage('UNIT testing'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn test'
-                }
-            }
-        }
-        stage('Integration testing'){
+//                     sh 'mvn test'
+//                 }
+//             }
+//         }
+//         stage('Integration testing'){
             
-            steps{
+//             steps{
                 
-                script{
+//                 script{
                     
-                    sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
+//                     sh 'mvn verify -DskipUnitTests'
+//                 }
+//             }
+//         }
         stage('Maven build'){
             
             steps{
@@ -46,29 +46,29 @@ pipeline{
                 }
             }
         }
-//         stage('Static code analysis'){
+        stage('Static code analysis'){
             
-//             steps{
+            steps{
                 
-//                 script{
+                script{
                     
-//                     withSonarQubeEnv(credentialsId: 'Sonar-Token') {
+                    withSonarQubeEnv(credentialsId: 'sonar-token') {
                         
-//                         sh 'mvn clean package sonar:sonar'
-//                     }
-//                 }       
-//             }
-//          }
-//         stage('Quality Gate Status'){
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }       
+            }
+         }
+        stage('Quality Gate Status'){
                 
-//                 steps{
+                steps{
                     
-//                     script{
+                    script{
                         
-//                         waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-Token'
-//                     }
-//                 }
-//          }
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                    }
+                }
+         }
 //         stage('Docker Build & Push to Nexus') {
 //             steps{
 //                 script{
